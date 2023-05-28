@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EmoFren</title>
+</head>
+<body>
+
+{% block content %}
+    <h1>{% block title %} Give us your preferences {% endblock %}</h1>
+    <form method="post"  action="{{ url_for('handle_data') }}">
+        <label for="title">Your Name</label>
+        <br>
+        <input type="text" name="username"
+               placeholder="Message title"
+               value="{{ request.form['username'] }}"></input>
+        <br>
+
+        <label for="title">Therapist Type</label>
+        <br>
+        <select name="therapist_type" method="GET" action="/">
+        <option value="{{therapies[0]}}" selected>{{therapies[0]}}</option>
+        {% for therapy in therapies[1:] %}
+            <option value="{{therapy}}">{{therapy}}</option>
+        {% endfor %}
+        </select>
+        <br>
+        <label for="title">Domain</label>
+        <br>
+        <input type="text" name="domain"
+               placeholder="Message title"
+               value="{{ request.form['username'] }}"></input>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
+</body>
+</html>
